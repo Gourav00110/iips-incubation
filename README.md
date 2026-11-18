@@ -1,48 +1,65 @@
-# IIPS Innovation, Startup & Incubation Management System
+# 🚀 IIPS Innovation, Startup & Incubation Management System
 
-Spring Boot 3.2 · Java 17 · Spring Data JPA · H2 (default) / MySQL · **No Lombok** (manual getters/setters)
+A centralized platform to streamline startup idea management, incubation support, mentor allocation, and funding tracking at IIPS.
 
-## Modules
-1. **Startup Ideas** – submit, review, approve/reject ideas
-2. **Incubation Support** – workspace / legal / technical / training support requests per startup
-3. **Mentor Allocation** – manage mentors and assign them to startups
-4. **Funding Tracker** – grants, seed, angel funding with status tracking
-5. **Dashboard** – overall summary
+## Tech Stack
 
-## Run
+- **Language:** Java 17
+- **Framework:** Spring Boot 3.2
+- **ORM:** Spring Data JPA / Hibernate
+- **Database:** MySQL
+- **Build Tool:** Maven
+- **Architecture:** RESTful APIs
+
+## Key Features
+
+- **Startup Management:** Submit, review, approve, and reject startup ideas.
+- **Incubation Support:** Manage workspace, legal, technical, and training requests.
+- **Mentor Allocation:** Register mentors and assign them to startups.
+- **Funding Tracker:** Track grants, seed funding, angel investments, and their status.
+- **Dashboard:** View overall incubation activity summaries.
+
+## Getting Started
+
+**Prerequisites:** Java 17, Maven, and MySQL.
+
+Clone the repository:
+
+```bash
+git clone https://github.com/YOUR-USERNAME/iips-incubation.git
+cd iips-incubation
 ```
+
+Run the application:
+
+```bash
 mvn spring-boot:run
 ```
-API base: http://localhost:8080/api  ·  H2 console: http://localhost:8080/h2-console
-(JDBC URL `jdbc:h2:file:./data/iipsdb`, user `sa`, empty password)
 
-To use MySQL, edit `src/main/resources/application.properties` (instructions inside).
+**Application URL:**
 
-## API
-| Module | Method & URL |
+- API Base URL: `http://localhost:8081/api`
+
+Configure your MySQL database credentials in `src/main/resources/application.properties` before running the application.
+
+## API Modules
+
+| Module | Main Endpoints |
 |---|---|
-| Startups | `POST /api/startups`, `GET /api/startups?status=`, `GET/PUT/DELETE /api/startups/{id}`, `PATCH /api/startups/{id}/status?status=APPROVED` |
-| Support | `POST /api/startups/{id}/support`, `GET /api/support`, `GET /api/startups/{id}/support`, `PATCH /api/support/{id}/status?status=COMPLETED`, `DELETE /api/support/{id}` |
-| Mentors | `POST /api/mentors`, `GET /api/mentors?expertise=`, `GET/PUT/DELETE /api/mentors/{id}` |
-| Allocation | `POST /api/allocations`, `GET /api/allocations`, `GET /api/allocations/mentor/{id}`, `GET /api/allocations/startup/{id}`, `PATCH /api/allocations/{id}/release` |
-| Funding | `POST /api/startups/{id}/funding`, `GET /api/funding`, `GET /api/startups/{id}/funding`, `GET /api/startups/{id}/funding/summary`, `PATCH /api/funding/{id}/status?status=DISBURSED`, `DELETE /api/funding/{id}` |
-| Dashboard | `GET /api/dashboard` |
+| Startups | `/api/startups` |
+| Incubation Support | `/api/support` |
+| Mentors | `/api/mentors` |
+| Mentor Allocation | `/api/allocations` |
+| Funding | `/api/funding` |
+| Dashboard | `/api/dashboard` |
 
-## Sample requests
-```
-POST /api/startups
-{"title":"AgriSense","description":"IoT soil monitoring","domain":"AgriTech",
- "founderName":"Riya Sharma","founderEmail":"riya@iips.edu","teamMembers":"Aman, Neha"}
+## Developers
 
-POST /api/mentors
-{"name":"Dr. A. Verma","email":"verma@mentor.com","expertise":"AgriTech, IoT","organization":"IIM Indore"}
+- **Lakshya Bagora**
+- **Gourav Mandloi**
 
-POST /api/allocations
-{"mentorId":1,"startupIdeaId":1,"remarks":"Product guidance"}
+---
 
-POST /api/startups/1/support
-{"supportType":"PROTOTYPING","description":"Need lab access for sensor prototype"}
+Developed to simplify and digitize the startup incubation ecosystem at IIPS.
 
-POST /api/startups/1/funding
-{"fundingSource":"Startup India Seed Fund","amount":500000,"fundingType":"SEED"}
-```
+**Built using Java & Spring Boot.**
